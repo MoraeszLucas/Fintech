@@ -31,4 +31,8 @@ public class UsuarioService {
     public void deletar(Long id){
         repository.deleteById(id);
     }
+
+    public java.util.Optional<Usuario> validarLogin(String email, String senha) {
+        return repository.findByEmailAndSenha(email, senha);
+    }
 }

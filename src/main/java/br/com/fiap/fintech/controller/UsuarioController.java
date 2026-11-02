@@ -1,6 +1,7 @@
 package br.com.fiap.fintech.controller;
 
 import br.com.fiap.fintech.model.Usuario;
+import br.com.fiap.fintech.repository.UsuarioRepository;
 import br.com.fiap.fintech.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/usuarios")
 public class UsuarioController {
@@ -33,6 +35,13 @@ public class UsuarioController {
     public ResponseEntity<Usuario> criarUsuario(@RequestBody Usuario usuario){
         Usuario novoUsuario = service.salvar(usuario);
         return ResponseEntity.status(HttpStatus.CREATED).body(novoUsuario);
+    }
+
+    @PostMapping("/login")
+    public org.springframework.http.ResponseEntity<?> validarLogin(@RequestBody Usuario credenciais) {
+        return service.validarLogin(credenciais.getEmail(), credenciais.getSenha())
+                .map(usuario -> org.springframework.http.ResponseEntity.ok().body(usuario))
+                .orElse(org.springframework.http.ResponseEntity.status(401).build());
     }
 
     @PutMapping("/{id}")
