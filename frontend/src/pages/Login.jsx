@@ -15,7 +15,7 @@ function Login() {
         try {
             // Verifica as credenciais no backend Java
             // ATENÇÃO: Verifique se a sua rota no Java é apenas '/usuarios/login'
-            const response = await api.post('/usuarios/login', { 
+            const response = await api.post('/api/users/login', { 
                 email: email, 
                 senha: senha 
             });

@@ -18,7 +18,7 @@ public class Usuario {
     @Column(name = "usr_email", length = 255)
     private String email;
 
-    @Column(name = "usr_password", length = 255)
+    @Column(name = "usr_passworld", length = 255)
     private String senha;
 
     @Column(name = "usr_dataregister")
