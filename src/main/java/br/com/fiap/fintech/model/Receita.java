@@ -23,7 +23,7 @@ public class Receita {
     private LocalDate dataReceita;
 
     @ManyToOne
-    @JoinColumn(name = "id_utilizador", nullable = false)
+    @JoinColumn(name = "id_ultilizador", nullable = false)
     private Usuario usuario;
 
     public Long getId(){ return id; }

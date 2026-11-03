@@ -7,8 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/gastos")
 public class GastoController {
@@ -17,9 +19,15 @@ public class GastoController {
     private GastoService service;
 
     @GetMapping
+    public ResponseEntity<List<Gasto>> listarTodos() {
+        return ResponseEntity.ok(service.listarTodos());
+    }
+
+    // Endpoint para buscar por ID especifico (corrigido com /{id})
+    @GetMapping("/{id}")
     public ResponseEntity<Gasto> buscarGasto(@PathVariable Long id){
         Optional<Gasto> gasto = service.buscarPorId(id);
-        return gasto.map(ResponseEntity ::ok )
+        return gasto.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 

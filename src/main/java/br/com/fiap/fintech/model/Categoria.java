@@ -11,7 +11,7 @@ public class Categoria {
     @Column(name = "id_categoria")
     private Long id;
 
-    @Column(name = "cat_nome", length = 100)
+    @Column(name = "ctgr_nome", length = 100)
     private String nome;
 
     public Long getId(){ return id; }
